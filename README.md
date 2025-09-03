@@ -1,4 +1,4 @@
-# MTCX MTCX ADAS - Sistema de Monitoramento GPS com Sensores
+# MTCX ADAS - Sistema de Monitoramento GPS com Sensores
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Arduino](https://img.shields.io/badge/Arduino-00979D?style=flat&logo=Arduino&logoColor=white)
