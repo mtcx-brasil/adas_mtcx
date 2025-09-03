@@ -1,4 +1,4 @@
-# MTCX GPS - Sistema de Monitoramento GPS com Sensores
+# MTCX MTCX ADAS - Sistema de Monitoramento GPS com Sensores
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Arduino](https://img.shields.io/badge/Arduino-00979D?style=flat&logo=Arduino&logoColor=white)
@@ -6,7 +6,7 @@
 
 ## 📖 Sobre o Projeto
 
-O **MTCX GPS** é um sistema completo de monitoramento GPS com sensores inerciais desenvolvido por **Anderson Scaloni**. Este projeto combina localização GPS precisa com dados de acelerômetro e giroscópio para criar um dispositivo de telemetria automotiva ou de atividades esportivas.
+O **MTCX ADAS** é um sistema completo de monitoramento GPS com sensores inerciais desenvolvido por **Anderson Scaloni**. Este projeto combina localização GPS precisa com dados de acelerômetro e giroscópio para criar um dispositivo de telemetria automotiva ou de atividades esportivas.
 
 ### ✨ Características Principais
 
@@ -39,7 +39,7 @@ O **MTCX GPS** é um sistema completo de monitoramento GPS com sensores inerciai
 | **Protoboard** | Montagem sem solda | R$ 8-15 |
 | **Jumpers** | Conexões | R$ 5-10 |
 | **Fonte Externa** | Alimentação independente | R$ 15-25 |
-
+ 
 **💰 Custo Total Estimado: R$ 70-160**
 
 ## 🔌 Diagrama de Conexões
@@ -146,19 +146,141 @@ Instale as seguintes bibliotecas através do Arduino IDE (Sketch → Include Lib
 - Verifique todas as conexões antes de energizar
 - Certifique-se de que os dispositivos I2C não tenham conflito de endereços
 
-### 2. Upload do Código
-```bash
-# Clone o repositório
-git clone https://github.com/seu-usuario/mtcx-gps.git
+### 2. Instalação e Configuração do Arduino IDE
 
-# Abra o arquivo arduino.ino no Arduino IDE
-# Selecione sua placa (Arduino Uno/Nano)
-# Selecione a porta COM correta
-# Clique em Upload
-```
+#### 📥 Download e Instalação
+1. **Baixe o Arduino IDE**:
+   - Acesse: [https://www.arduino.cc/en/software](https://www.arduino.cc/en/software)
+   - Escolha a versão para seu sistema operacional (Windows, macOS, Linux)
+   - **Versão recomendada**: Arduino IDE 2.x (mais recente)
+   - Instale seguindo as instruções do seu sistema operacional
 
-### 3. Operação
-- **Ligar**: O sistema mostra uma tela de splash "MTCX GPS"
+#### ⚙️ Configuração Inicial
+2. **Configure a Placa Arduino**:
+   - Abra o Arduino IDE
+   - Vá em **Tools** → **Board** → **Arduino AVR Boards**
+   - Selecione sua placa:
+     - **Arduino Uno** (se usar Arduino Uno)
+     - **Arduino Nano** (se usar Arduino Nano)
+
+3. **Configure a Porta Serial**:
+   - Conecte seu Arduino ao computador via cabo USB
+   - Vá em **Tools** → **Port**
+   - Selecione a porta onde seu Arduino está conectado:
+     - **Windows**: COM3, COM4, COM5, etc.
+     - **macOS**: /dev/cu.usbmodem ou /dev/cu.usbserial
+     - **Linux**: /dev/ttyUSB0, /dev/ttyACM0, etc.
+
+#### 📚 Instalação das Bibliotecas
+4. **Instale as Bibliotecas Necessárias**:
+   
+   **U8g2lib (Display OLED):**
+   - No Arduino IDE: **Tools** → **Manage Libraries**
+   - Digite "U8g2" na busca
+   - Encontre "U8g2 by oliver"
+   - Clique em **Install**
+   - Aguarde a instalação completa
+   
+   **TinyGPS (Processamento GPS):**
+   - No Arduino IDE: **Tools** → **Manage Libraries**
+   - Digite "TinyGPS" na busca
+   - Encontre "TinyGPS by Mikal Hart"
+   - Clique em **Install**
+   - Aguarde a instalação completa
+
+### 3. Compilação e Upload do Programa
+
+#### 📁 Preparação dos Arquivos
+1. **Baixe o Código**:
+   ```bash
+   # Opção 1: Clone via Git
+   git clone https://github.com/mtcx-brasil/adas_mtcx.git
+   
+   # Opção 2: Download direto do GitHub
+   # Acesse: https://github.com/mtcx-brasil/adas_mtcx
+   # Clique em "Code" → "Download ZIP"
+   # Extraia o arquivo ZIP
+   ```
+
+2. **Abra o Projeto**:
+   - Navegue até a pasta do projeto
+   - **Duplo-clique** no arquivo `arduino.ino`
+   - O Arduino IDE abrirá automaticamente com o projeto
+
+#### 🔧 Compilação e Verificação
+3. **Compile o Código**:
+   - No Arduino IDE, clique no ícone **✓ Verify** (ou Ctrl+R)
+   - Aguarde a compilação terminar
+   - **Se houver erros**:
+     - Verifique se todas as bibliotecas estão instaladas
+     - Verifique se a placa está selecionada corretamente
+     - Verifique a sintaxe do código
+
+4. **Informações de Compilação**:
+   ```
+   Sketch uses XXXXX bytes (XX%) of program storage space.
+   Global variables use XXXX bytes (XX%) of dynamic memory.
+   ```
+   - **Programa**: Deve usar menos de 32KB (Arduino Uno)
+   - **Memória RAM**: Deve usar menos de 2KB (Arduino Uno)
+
+#### 📤 Upload para o Arduino
+5. **Faça o Upload**:
+   - Certifique-se de que o Arduino está conectado
+   - Verifique se a porta está selecionada corretamente
+   - Clique no ícone **→ Upload** (ou Ctrl+U)
+   - **Aguarde o processo**:
+     ```
+     Compiling sketch...
+     Uploading...
+     Done uploading.
+     ```
+
+6. **Verificação do Upload**:
+   - O LED do Arduino piscará durante o upload
+   - Após completar, o programa iniciará automaticamente
+   - Você verá a tela de splash "MTCX GPS" no display
+
+#### 🔍 Monitoramento e Debug
+7. **Monitor Serial** (Opcional):
+   - Clique em **Tools** → **Serial Monitor** (ou Ctrl+Shift+M)
+   - Configure para **9600 baud**
+   - Você verá mensagens de debug do GPS e sensores:
+     ```
+     Init...
+     Ready!
+     GPS: INVALID | hasGPS:NO valid:NO recent:NO timeout:NO age:4294967295
+     GPS: 25.2634,-53.8251 45km/h | hasGPS:YES valid:YES recent:YES timeout:NO age:150
+     ```
+
+#### ⚠️ Solução de Problemas de Compilação
+
+**Erro: "Library not found"**
+- Reinstale as bibliotecas U8g2lib e TinyGPS
+- Reinicie o Arduino IDE
+
+**Erro: "Board not found"**
+- Verifique se selecionou a placa correta
+- Reinstale os drivers do Arduino
+
+**Erro: "Port not available"**
+- Verifique o cabo USB
+- Tente outra porta USB
+- Reinstale os drivers CH340/CP2102 (Arduino clones)
+
+**Erro: "Sketch too big"**
+- Use Arduino Uno (mais memória que o Nano)
+- Otimize o código removendo funcionalidades desnecessárias
+
+#### 📊 Especificações de Compilação
+- **Plataforma**: Arduino AVR (ATmega328P)
+- **Frequência**: 16MHz
+- **Bootloader**: Optiboot
+- **Memória Flash**: ~28KB usados de 32KB
+- **SRAM**: ~1.5KB usados de 2KB
+
+### 4. Operação do Sistema
+- **Ligar**: O sistema mostra uma tela de splash "MTCX"
 - **Navegação**: Pressione o botão para alternar entre as 5 telas
 - **GPS**: Aguarde alguns minutos para aquisição do sinal GPS
 - **Calibração**: O MPU6050 é calibrado automaticamente na inicialização
